@@ -6,6 +6,8 @@ import hr.inovatrend.carservicelora.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -13,5 +15,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user) {
 		return userRepository.save(user);
+	}
+
+	@Override
+	public List<User> getAll() {
+		return userRepository.findAll();
 	}
 }

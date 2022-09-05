@@ -5,6 +5,11 @@
 		<title>Title</title>
 	</head>
 	<body>
+		<ul>
+			<th:block th:each="user : ${users}">
+				<li th:text="${user.getName()}"></li>
+			</th:block>
+		</ul>
 		<form method="post">
 			<label for="name">Name</label>
 			<input type="text" name="name" placeholder="name" id="name">
