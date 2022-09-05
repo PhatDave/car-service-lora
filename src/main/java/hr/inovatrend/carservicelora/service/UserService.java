@@ -1,5 +1,7 @@
 package hr.inovatrend.carservicelora.service;
 
+import hr.inovatrend.carservicelora.entity.User;
+
 public interface UserService {
-	void createUser();
+	User createUser(User user);
 }

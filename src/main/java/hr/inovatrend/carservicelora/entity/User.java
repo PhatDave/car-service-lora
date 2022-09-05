@@ -1,7 +1,6 @@
 package hr.inovatrend.carservicelora.entity;
 
 import lombok.*;
-import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.*;
 
@@ -11,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_sequence")
 	@SequenceGenerator(name = "users_sequence", allocationSize = 10)
