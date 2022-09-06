@@ -11,6 +11,10 @@
         <th:block th:each="user : ${users}">
 
         <li th:text="${user.getName()}"></li>
+        <li th:text="${user.getSurname()}"></li>
+        <li th:text="${user.OIB()}"></li>
+        <li th:text="${user.Address()}"></li>
+
 
         </th:block>
 
@@ -24,8 +28,8 @@
         <input type="text" surname="surname" placeholder="surname" id="surname">
         <label for="oib">OIB</label>
         <input type="text" oib="oib" placeholder="OIB" id="oib">
-        <label for="adress">Adress</label>
-        <input type="text" adress="adress" placeholder="adress" id="adress">
+        <label for="address">Address</label>
+        <input type="text" address="address" placeholder="address" id="address">
 
         <button type="submit">Add user</button>
 
