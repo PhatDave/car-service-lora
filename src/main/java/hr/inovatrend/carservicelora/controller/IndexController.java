@@ -15,16 +15,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class IndexController {
     private final UserService userService;
+
     @GetMapping
     private String index(Model model) {
         model.addAttribute("users", userService.getAll());
-        model.addAttribute("user", new User());
         return "index";
     }
 
-    @PostMapping
-    private String addUser(@ModelAttribute User user) {
-        userService.createUser(user);
-        return "redirect:/";
-    }
+
 }
+
