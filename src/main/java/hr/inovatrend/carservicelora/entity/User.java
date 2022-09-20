@@ -21,5 +21,10 @@ public class User {
     private String name;
     private String surname;
     private String address;
+
+    @Override
+    public String toString() {
+        return this.getName() + " " + this.getSurname();
+    }
 }
 

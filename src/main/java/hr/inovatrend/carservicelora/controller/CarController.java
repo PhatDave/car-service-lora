@@ -1,6 +1,7 @@
 package hr.inovatrend.carservicelora.controller;
 
 import hr.inovatrend.carservicelora.entity.Car;
+import hr.inovatrend.carservicelora.entity.User;
 import hr.inovatrend.carservicelora.entity.enums.CarManufacturer;
 import hr.inovatrend.carservicelora.service.CarService;
 import hr.inovatrend.carservicelora.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -58,10 +60,18 @@ public class CarController {
     public String showEditForm(@PathVariable("id") long id, Model model) { //dodaje nove podatke u bazu za već postojanog cara
         Optional<Car> car = carService.getCar(id);
 
+
         if (car.isPresent()) {
-            var carObj = car.get();
+            Car carObj = car.get();
+
+
+            List<User> users = userService.getAll();
             model.addAttribute("car", carObj);
+            model.addAttribute("users", users);
+            model.addAttribute("manufacturers", CarManufacturer.values());
+            return "car/add-car";
         }
+
 
         return "/car/add-car";
     }
@@ -73,7 +83,7 @@ public class CarController {
 
         Optional<Car> car = carService.getCar(id);
         if (car.isPresent()) {
-            var carObj = car.get();
+            Car carObj = car.get();
             carService.deleteById(carObj.getId());
         }
 

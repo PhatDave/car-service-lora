@@ -21,6 +21,7 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "klijentid")
     private User klijent;
+
     private CarManufacturer tip;
     private String godina;
     private String registracija;

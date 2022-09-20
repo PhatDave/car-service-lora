@@ -55,9 +55,11 @@
         <th> Year</th>
         <th> License plate</th>
         <th> Color</th>
+        <th></th>
         <th> <span><a th:href="'/car/add'"> <button
                 class="btn btn-secondary btn-sm">Add car</button> </a> </span>
         </th>
+
 
     </tr>
     </thead>
@@ -67,6 +69,11 @@
         <td><span th:text="${car.getGodina()}"> Year </span></td>
         <td><span th:text="${car.getRegistracija()}"> License plate </span></td>
         <td><span th:text="${car.getBoja()}"> Color </span></td>
+        <td><span> <a th:href="'/car/edit/' + ${car.id}"> <button
+                class="btn btn-secondary btn-sm">Edit</button> </a> </span>
+        </td>
+        <td><span> <a th:href="'/car/delete/' + ${car.id}"> <button class="btn btn-secondary btn-sm">Delete</button></a></span>
+        </td>
 
 
     </tr>
