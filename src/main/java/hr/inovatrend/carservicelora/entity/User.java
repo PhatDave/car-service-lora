@@ -22,3 +22,4 @@ public class User {
     private String surname;
     private String address;
 }
+

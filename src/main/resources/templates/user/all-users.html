@@ -30,15 +30,22 @@
         <th> OIB</th>
         <th> Address</th>
         <th></th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
         <td><span th:text="${user.getName()}"> Name </span></td>
         <td><span th:text="${user.getSurname()}"> Surname </span></td>
-        <td><span th:text="${user.getOIB()}"> OIB </span></td>
+        <td> <span th:text="${user.getOIB()}"> OIB </span></a></td>
         <td><span th:text="${user.getAddress()}"> Address </span></td>
-        <td><span><button type="submit" class="btn btn-secondary btn-sm" th:href="@{/user/edit/{id}(id=${userID})}">Edit</button></span></td>
+        <td><span> <a th:href="'/user/' + ${user.id}"> <button class="btn btn-secondary btn-sm">Details</button> </a> </span>
+        </td>
+        <td><span> <a th:href="'/user/edit/' + ${user.id}"> <button class="btn btn-secondary btn-sm">Edit</button> </a> </span>
+        </td>
+        <td><span> <a th:href="'/user/delete/' + ${user.id}"> <button class="btn btn-secondary btn-sm">Delete</button></a></span>
+        </td>
     </tr>
     </tbody>
 </table>

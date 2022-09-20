@@ -13,9 +13,9 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class ="nav-item"><a class="navbar-brand" th:href="@{/}">Home</a></li>
-                <li class ="nav-item active"> <a class="navbar-brand" th:href="@{/user/add}">Add Users</a></li>
-                <li class ="nav-item"> <a class="navbar-brand" th:href="@{/user/all}">All Users</a></li>
+                <li class="nav-item"><a class="navbar-brand" th:href="@{/}">Home</a></li>
+                <li class="nav-item active"><a class="navbar-brand" th:href="@{/user/add}">Add Users</a></li>
+                <li class="nav-item"><a class="navbar-brand" th:href="@{/user/all}">All Users</a></li>
             </ul>
         </div>
     </div>
@@ -41,6 +41,33 @@
     </tbody>
 </table>
 
+
+<table class="table">
+    <thead>
+    <h2>Owned Cars</h2>
+    <tr>
+        <th> Type</th>
+        <th> Year</th>
+        <th> License plate</th>
+        <th> Color</th>
+        <th></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td><span th:text="${car.getTip().getDisplayValue}"> Type </span></td>
+        <td><span th:text="${car.getGodina()}"> Year </span></td>
+        <td><span th:text="${car.getRegistracija()}"> License plate </span></td>
+        <td><span th:text="${car.getBoja()}"> Color </span></td>
+        <td><span><a th:href="'/car/add' + ${car.id}"> <button
+                class="btn btn-secondary btn-sm">Add car</button> </a> </span>
+        </td>
+
+    </tr>
+    </tbody>
+
+</table>
 
 </body>
 </html>
