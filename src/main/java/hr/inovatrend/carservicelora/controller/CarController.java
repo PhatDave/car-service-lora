@@ -1,7 +1,9 @@
 package hr.inovatrend.carservicelora.controller;
 
 import hr.inovatrend.carservicelora.entity.Car;
+import hr.inovatrend.carservicelora.entity.enums.CarManufacturer;
 import hr.inovatrend.carservicelora.service.CarService;
+import hr.inovatrend.carservicelora.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +18,25 @@ import java.util.Optional;
 public class CarController {
 
     private final CarService carService;
+    private final UserService userService;
 
     @GetMapping("/add")
     private String carAdd(Model model) {
 
+        var users = userService.getAll();
         model.addAttribute("car", new Car()); //dodaje novi auto u bazu
+        model.addAttribute("users", users);
+        model.addAttribute("manufacturers", CarManufacturer.values());
+
+
         return "car/add-car";
     }
 
     @PostMapping("/add")
     private String addCar(@ModelAttribute Car car) { //pravi novi auto za dodavanje u bazu
         carService.createCar(car);
+
+
         return "redirect:/";
     }
 

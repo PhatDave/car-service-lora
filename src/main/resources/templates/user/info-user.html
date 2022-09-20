@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <title>Info</title>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class=" mb-3 navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -22,7 +23,11 @@
 </nav>
 
 
-<table class="table">
+<span class="pt-5 ms-5"> <a th:href="@{/user/all}"> <button class="btn btn-secondary btn-sm"><i
+        class="fas fa-arrow-left"></i> Back</button> </a> </span>
+
+
+<table class=" mb-5 table">
     <thead>
     <tr>
         <th> Name</th>
@@ -44,13 +49,15 @@
 
 <table class="table">
     <thead>
-    <h2>Owned Cars</h2>
+    <h2 class="d-flex justify-content-center">Owned Cars</h2>
     <tr>
         <th> Type</th>
         <th> Year</th>
         <th> License plate</th>
         <th> Color</th>
-        <th></th>
+        <th> <span><a th:href="'/car/add'"> <button
+                class="btn btn-secondary btn-sm">Add car</button> </a> </span>
+        </th>
 
     </tr>
     </thead>
@@ -60,9 +67,7 @@
         <td><span th:text="${car.getGodina()}"> Year </span></td>
         <td><span th:text="${car.getRegistracija()}"> License plate </span></td>
         <td><span th:text="${car.getBoja()}"> Color </span></td>
-        <td><span><a th:href="'/car/add' + ${car.id}"> <button
-                class="btn btn-secondary btn-sm">Add car</button> </a> </span>
-        </td>
+
 
     </tr>
     </tbody>

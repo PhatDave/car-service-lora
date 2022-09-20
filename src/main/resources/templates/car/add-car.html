@@ -30,8 +30,20 @@
 <div class="container">
     <form action="/car/add" method="post" th:object="${car}">
         <div class="mb-3">
-            <label for="tip" class="form-label">Tip automobila</label>
-            <input type="text" class="form-control" tip="tip" placeholder="tip" id="tip" th:field="*{tip}">
+
+            <select class="form-select" aria-label="Default select example"
+
+                    th:field="*{tip}">
+
+                <option value="" th:disabled="disabled" th:selected="selected">Tip automobila</option>
+                <option th:each="manufacturer : ${manufacturers}"
+                        th:value="${manufacturer}"
+                        th:text="${manufacturer.getDisplayValue}"></option>
+
+
+            </select>
+
+
         </div>
 
         <div class="mb-3">
