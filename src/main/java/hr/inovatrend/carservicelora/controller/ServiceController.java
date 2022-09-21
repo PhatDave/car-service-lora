@@ -46,8 +46,36 @@ public class ServiceController {
     @GetMapping("/{serviceID}")
     private String serviceInfo(Model model, @PathVariable Long serviceID) {
 
-        model.addAttribute("services", serviceManager.getService(serviceID));
+        model.addAttribute("service", serviceManager.getService(serviceID));
         return "user/info-user";
+    }
+
+
+    @GetMapping("/all")
+    private String serviceAll(Model model) {
+
+        model.addAttribute("services", serviceManager.getAll());
+        return "user/info-user";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") long id, Model model) { //dodaje nove podatke u bazu za već postojanog cara
+        Optional<Service> service = serviceManager.getService(id);
+
+
+        if (service.isPresent()) {
+            Service serviceObj = service.get();
+
+            List<Car> cars = carManager.getAll();
+
+            model.addAttribute("service", serviceObj);
+            model.addAttribute("cars", cars);
+
+            return "car/add-service";
+        }
+
+
+        return "/car/add-service";
     }
 
 
