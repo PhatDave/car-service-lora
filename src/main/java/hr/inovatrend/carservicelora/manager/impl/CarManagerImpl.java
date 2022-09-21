@@ -1,10 +1,10 @@
-package hr.inovatrend.carservicelora.service.impl;
+package hr.inovatrend.carservicelora.manager.impl;
 
 
 import hr.inovatrend.carservicelora.entity.Car;
 import hr.inovatrend.carservicelora.entity.User;
 import hr.inovatrend.carservicelora.repository.CarRepository;
-import hr.inovatrend.carservicelora.service.CarService;
+import hr.inovatrend.carservicelora.manager.CarManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CarServiceImpl implements CarService {
+public class CarManagerImpl implements CarManager {
 
     private final CarRepository carRepository;
 

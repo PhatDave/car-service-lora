@@ -1,8 +1,8 @@
-package hr.inovatrend.carservicelora.service.impl;
+package hr.inovatrend.carservicelora.manager.impl;
 
 import hr.inovatrend.carservicelora.entity.User;
 import hr.inovatrend.carservicelora.repository.UserRepository;
-import hr.inovatrend.carservicelora.service.UserService;
+import hr.inovatrend.carservicelora.manager.UserManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +11,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserManagerImpl implements UserManager {
     private final UserRepository userRepository;
 
     @Override
-    public User createUser (User user){
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
 
     @Override
-    public List<User> getAll(){
+    public List<User> getAll() {
 
         return userRepository.findAll();
 

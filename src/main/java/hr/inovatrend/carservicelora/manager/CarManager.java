@@ -1,4 +1,4 @@
-package hr.inovatrend.carservicelora.service;
+package hr.inovatrend.carservicelora.manager;
 
 import hr.inovatrend.carservicelora.entity.Car;
 import hr.inovatrend.carservicelora.entity.User;
@@ -6,9 +6,10 @@ import hr.inovatrend.carservicelora.entity.User;
 import java.util.List;
 import java.util.Optional;
 
-public interface CarService {
+public interface CarManager {
 
     Car createCar(Car car);
+
     List<Car> getAll();
 
     Optional<Car> getCar(Long id);

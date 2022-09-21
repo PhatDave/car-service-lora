@@ -1,8 +1,8 @@
 package hr.inovatrend.carservicelora.controller;
 
 import hr.inovatrend.carservicelora.entity.User;
-import hr.inovatrend.carservicelora.service.CarService;
-import hr.inovatrend.carservicelora.service.UserService;
+import hr.inovatrend.carservicelora.manager.CarManager;
+import hr.inovatrend.carservicelora.manager.UserManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
-    private final CarService carService;
+    private final UserManager userManager;
+    private final CarManager carManager;
 
     @GetMapping("/add")
     private String userAdd(Model model) {
@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("/add")
     private String addUser(@ModelAttribute User user) { //pravi novog usera za dodavanje u bazu
-        userService.createUser(user);
+        userManager.createUser(user);
         return "redirect:/";
     }
 
@@ -34,11 +34,11 @@ public class UserController {
     private String userInfo(Model model, @PathVariable Long userID) {
 
 
-        User user = userService.getUser(userID);
+        User user = userManager.getUser(userID);
 
         model.addAttribute("users", user);
 
-        var cars = carService.getByUser(user);
+        var cars = carManager.getByUser(user);
 
         model.addAttribute("cars", cars);
 
@@ -49,13 +49,13 @@ public class UserController {
     @GetMapping("/all")
     private String userAll(Model model) {
 
-        model.addAttribute("users", userService.getAll());
+        model.addAttribute("users", userManager.getAll());
         return "user/all-users";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") long id, Model model) { //dodaje nove podate u bazu za već postojanog usera
-        User user = userService.getUser(id);
+        User user = userManager.getUser(id);
 
         model.addAttribute("user", user);
         return "/user/add-user";
@@ -64,8 +64,8 @@ public class UserController {
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
-        User user = userService.getUser(id);
-        userService.deleteById(user.getId());
+        User user = userManager.getUser(id);
+        userManager.deleteById(user.getId());
         return "redirect:../../user/all";
     }
 

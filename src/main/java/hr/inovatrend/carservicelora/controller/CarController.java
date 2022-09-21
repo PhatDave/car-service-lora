@@ -3,8 +3,8 @@ package hr.inovatrend.carservicelora.controller;
 import hr.inovatrend.carservicelora.entity.Car;
 import hr.inovatrend.carservicelora.entity.User;
 import hr.inovatrend.carservicelora.entity.enums.CarManufacturer;
-import hr.inovatrend.carservicelora.service.CarService;
-import hr.inovatrend.carservicelora.service.UserService;
+import hr.inovatrend.carservicelora.manager.CarManager;
+import hr.inovatrend.carservicelora.manager.UserManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +19,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CarController {
 
-    private final CarService carService;
-    private final UserService userService;
+    private final CarManager carManager;
+    private final UserManager userManager;
 
     @GetMapping("/add")
     private String carAdd(Model model) {
 
-        var users = userService.getAll();
+        var users = userManager.getAll();
         model.addAttribute("car", new Car()); //dodaje novi auto u bazu
         model.addAttribute("users", users);
         model.addAttribute("manufacturers", CarManufacturer.values());
@@ -36,7 +36,7 @@ public class CarController {
 
     @PostMapping("/add")
     private String addCar(@ModelAttribute Car car) { //pravi novi auto za dodavanje u bazu
-        carService.createCar(car);
+        carManager.createCar(car);
 
 
         return "redirect:/";
@@ -45,27 +45,27 @@ public class CarController {
     @GetMapping("/{carID}")
     private String carInfo(Model model, @PathVariable Long carID) {
 
-        model.addAttribute("cars", carService.getCar(carID));
+        model.addAttribute("cars", carManager.getCar(carID));
         return "user/info-user";
     }
 
     @GetMapping("/all")
     private String carAll(Model model) {
 
-        model.addAttribute("cars", carService.getAll());
+        model.addAttribute("cars", carManager.getAll());
         return "car/all-cars";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") long id, Model model) { //dodaje nove podatke u bazu za već postojanog cara
-        Optional<Car> car = carService.getCar(id);
+        Optional<Car> car = carManager.getCar(id);
 
 
         if (car.isPresent()) {
             Car carObj = car.get();
 
 
-            List<User> users = userService.getAll();
+            List<User> users = userManager.getAll();
             model.addAttribute("car", carObj);
             model.addAttribute("users", users);
             model.addAttribute("manufacturers", CarManufacturer.values());
@@ -81,10 +81,10 @@ public class CarController {
     public String deleteCar(@PathVariable("id") long id) {
 
 
-        Optional<Car> car = carService.getCar(id);
+        Optional<Car> car = carManager.getCar(id);
         if (car.isPresent()) {
             Car carObj = car.get();
-            carService.deleteById(carObj.getId());
+            carManager.deleteById(carObj.getId());
         }
 
         return "redirect:../../car/all";
