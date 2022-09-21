@@ -43,4 +43,12 @@ public class ServiceController {
     }
 
 
+    @GetMapping("/{serviceID}")
+    private String serviceInfo(Model model, @PathVariable Long serviceID) {
+
+        model.addAttribute("services", serviceManager.getService(serviceID));
+        return "user/info-user";
+    }
+
+
 }
