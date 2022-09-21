@@ -79,4 +79,17 @@ public class ServiceController {
     }
 
 
+    @GetMapping("/delete/{id}")
+    public String deleteService(@PathVariable("id") long id) {
+
+
+        Optional<Service> service = serviceManager.getService(id);
+        if (service.isPresent()) {
+            Service serviceObj = service.get();
+            serviceManager.deleteById(serviceObj.getId());
+        }
+
+        return "redirect:../../service/all";
+    }
+
 }
