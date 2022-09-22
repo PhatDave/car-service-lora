@@ -27,4 +27,12 @@ public class Car {
     private String registracija;
     private String boja;
 
+    @Override
+    public String toString() {
+        return String.format("%s %s (%d)",
+                this.tip.getManufacturer(),
+                this.tip.getModel(),
+                this.getId());
+    }
+
 }

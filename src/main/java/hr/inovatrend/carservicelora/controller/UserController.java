@@ -1,12 +1,17 @@
 package hr.inovatrend.carservicelora.controller;
 
+import hr.inovatrend.carservicelora.entity.Service;
 import hr.inovatrend.carservicelora.entity.User;
 import hr.inovatrend.carservicelora.manager.CarManager;
+import hr.inovatrend.carservicelora.manager.ServiceManager;
 import hr.inovatrend.carservicelora.manager.UserManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -16,6 +21,8 @@ public class UserController {
 
     private final UserManager userManager;
     private final CarManager carManager;
+
+    private final ServiceManager serviceManager;
 
     @GetMapping("/add")
     private String userAdd(Model model) {
@@ -39,8 +46,10 @@ public class UserController {
         model.addAttribute("users", user);
 
         var cars = carManager.getByUser(user);
+        List<Service> services = serviceManager.getCarServicesByCarId(1L);
 
         model.addAttribute("cars", cars);
+        model.addAttribute("services", services);
 
 
         return "user/info-user";

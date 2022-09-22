@@ -92,21 +92,32 @@
         <th> Work done</th>
         <th> Price</th>
         <th> Paid for</th>
-        <th> <span><a th:href="'/car/add'"> <button
+        <th> <span><a th:href="'/service/add'"> <button
                 class="btn btn-secondary btn-sm">Add service info</button> </a> </span>
         </th>
+        <th></th>
+        <th></th>
 
 
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><span>  </span></td>
-        <td><span>  </span></td>
-        <td><span>   </span></td>
-        <td><span>  </span></td>
+    <tr th:each="service : ${services}">
+        <td th:text="${service.getAuto()}"></td>
+        <td><span th:text="${service.getDatetime()}"></span></td>
+        <td><span th:text="${service.getWorkerName()} +' ' + ${service.getWorkerLName()} "></span></td>
+        <td th:text="${service.getDescription()}"></td>
+        <td th:text="${service.getPrice()}"></td>
+        <td th:text="${service.isPayment()} ? 'Paid' : 'Not paid'">
+        </td>
+        <td><span><a th:href="'/service/edit/' + ${service.getId()} " class="btn btn-secondary btn-sm">Edit </a> </span>
+        </td>
+        <td><span><a th:href="'/service/delete/' + ${service.getId()}"
+                     class="btn btn-secondary btn-sm">Delete</a></span>
+        </td>
         <td></td>
-        <td></td>
+
+
     </tr>
     </tbody>
 

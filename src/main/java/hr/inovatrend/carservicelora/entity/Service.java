@@ -33,5 +33,6 @@ public class Service {
     private String description;
     private String workerName;
     private String workerLName;
+    private boolean payment;
 
 }

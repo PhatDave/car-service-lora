@@ -22,31 +22,43 @@ public class ServiceManagerImpl implements ServiceManager {
 
     @Override
     public List<Service> getCarServicesByCar(Car car) {
+
         return null;
     }
 
     @Override
     public List<Service> getCarServicesByCarId(Long id) {
-        return null;
+        return serviceRepository.findByAuto_Id(id);
     }
 
     @Override
     public List<Service> getRecentServices(int limit) {
-        return null;
+
+        List<Service> services = serviceRepository.findAllByOrderByDatetimeDesc();
+        if (services.size() < limit) {
+            limit = services.size();
+        }
+        List<Service> limitedServices = services.subList(0, limit);
+        return limitedServices;
+
     }
 
     @Override
     public List<Service> getAll() {
-        return null;
+        return serviceRepository.findAll();
     }
 
     @Override
     public Optional<Service> getService(Long id) {
-        return Optional.empty();
+        return serviceRepository.findById(id);
     }
 
     @Override
     public void deleteById(Long id) {
 
+        serviceRepository.deleteById(id);
+
     }
+
+
 }
