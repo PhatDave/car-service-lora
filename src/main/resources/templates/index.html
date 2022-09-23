@@ -50,12 +50,15 @@
     <!-- TODO: fix hrefs-->
     <tr class="align-middle" th:each="service : ${services}">
         <td th:text="${service.id}"></td>
-        <td><a th:href="'/service/info/' + ${service.id}" th:text="${service.getDescription()}"></a>
+        <td><a class="text-decoration-none link-secondary" th:href="'/user/' + ${service.getAuto().getId()}"
+               th:text="${service.getDescription()}"></a>
         </td>
-        <td><a th:href="'/car/info/' + ${service.getAuto().getId()}" th:text="${service.getAuto()}"></a>
+        <td><a class="text-decoration-none link-secondary" th:href="'/user/' + ${service.getAuto().getId()}"
+               th:text="${service.getAuto()}"></a>
         </td>
         <td>
-            <a th:href="'/client/info/' + ${service.getAuto().getKlijent().getId()}"
+            <a class="text-decoration-none link-secondary"
+               th:href="'/user/' + ${service.getAuto().getKlijent().getId()}"
                th:text="${service.getAuto().getKlijent().getName()}"></a>
         </td>
     </tr>
